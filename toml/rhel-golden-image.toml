@@ -1,0 +1,160 @@
+name = "rhel-golden-image"
+description = "RHEL Golden Image"
+version = "0.0.9"
+modules = []
+groups = []
+distro = "rhel-9"
+
+[[packages]]
+name = "aide"
+version = "*"
+
+[[packages]]
+name = "bind-utils"
+
+[[packages]]
+name = "chrony"
+
+[[packages]]
+name = "lvm2"
+
+[[packages]]
+name = "wget"
+
+[[packages]]
+name = "vim"
+
+[[packages]]
+name = "git"
+
+[[packages]]
+name = "openssh-server"
+
+[[packages]]
+name = "bash-completion"
+
+[[packages]]
+name = "firewalld"
+
+[[packages]]
+name = "openscap-scanner"
+
+[[packages]]
+name = "openscap-utils"
+
+[[packages]]
+name = "scap-security-guide"
+
+[[packages]]
+name = "insights-client"
+
+[[packages]]
+name = "rhc"
+
+[[packages]]
+name = "rhc-worker-playbook"
+
+[[packages]]
+name = "glibc-langpack-en"
+
+[[packages]]
+name = "langpacks-en"
+
+[[packages]]
+name = "ansible-core"
+
+[[packages]]
+name = "rhel-system-roles" 
+
+[[packages]]
+name = "sudo"
+version = "*"
+
+[[packages]]
+name = "libpwquality"
+version = "*"
+
+[[packages]]
+name = "systemd-journal-remote"
+version = "*"
+
+[[packages]]
+name = "firewalld"
+version = "*"
+
+[[packages]]
+name = "nftables"
+version = "*"
+
+[[packages]]
+name = "libselinux"
+version = "*"
+
+[[packages]]
+name = "audit-libs"
+version = "*"
+
+[[packages]]
+name = "audit"
+version = "*"
+
+
+[customizations]
+
+[[customizations.user]]
+name = "rexuser"
+password = "r3dh4t1!" # notsecret
+key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDkjHg5K0fG2Pw3sm5fyAVZ0j1zhlzb3urZavUjO0wmjdwKmclya4er7d6xCP1XpMp1EcXgYA2Svbnz8eyMUCgjHOq2+e/ccrfr/U65xNWORl62c/63KlpQHrRUK7EtRJHDu8tx2WNV43kSqyyua2uuS/ydzyDVhrrSf8IqRn4pkaL6+bJxcNUNNyUrs/yBogRUfue0CPEDXj8gCTbn8jlVLA+ts/D6ayORM1WSJU8iVfkBsLclZ5OfuoMYiwRzWJ30ekal/t+9yzTS3RNt6BXHIqLkcrGoEag/ZA4FCx5JVOQWdfApJtoExNejsTqpkRh+Z33dBRCNbIfXXxoaNWa3VdMYBXeRfpPQ5HbdPuZMdg2wKBNBTcYxc5qdmka6CVD3484Oh0hUigM0TJZKWtZ6vphqOjdFDsYNVA5+BXA5R14T0Q+cAuAhF6NnuwsAbfCvMsr3YfdvXwJgdCNFo4nvajqvIZE/ZKwP7FbZ56M4drDH0DfkIxZfbbBFIRxlX0BnpgMJH31XNRVhDM2PPSKRE2yi6+da13rhhZs8/WcZc0snvsASydOMEeX9bDwq1/qkbkezhhFsSZz9yCvWgYg1P03vlACmcgvDDHApnMx7IgTtyTIjbOEiklvwcuB9Qhs9fXc3iCNHLrKcqVSfUVvZj+y/BXFkS6I6p4TGmOjlfQ=="
+groups = ["wheel"]
+uid = 5001
+
+[customizations.timezone]
+timezone = "Europe/Stockholm"
+ntpservers = ["0.rhel.pool.ntp.org", "1.rhel.pool.ntp.org"]
+
+[customizations.locale]
+languages = ["en_US.UTF-8"]
+keyboard = "sv-latin1"
+
+[customizations.firewall]
+[customizations.firewall.services]
+enabled = ["cockpit", "ssh"]
+
+[customizations.services]
+enabled = ["auditd","crond","firewalld","systemd-journald","cockpit.socket", "sshd.service"]
+disabled = []
+
+[customizations.kernel]
+append = "audit_backlog_limit=8192 audit=1"
+
+[[customizations.filesystem]]
+mountpoint = "/boot"
+size = "1 GiB"
+
+[[customizations.filesystem]]
+mountpoint = "/"
+size = "8 GiB"
+
+[[customizations.filesystem]]
+mountpoint = "/home"
+size = "2 GiB"
+
+[[customizations.filesystem]]
+mountpoint = "/tmp"
+size = "2 GiB"
+
+[[customizations.filesystem]]
+mountpoint = "/var"
+size = "8 GiB"
+
+[[customizations.filesystem]]
+mountpoint = "/var/log"
+size = "2 GiB"
+
+[[customizations.filesystem]]
+mountpoint = "/var/log/audit"
+size = "2 GiB"
+
+[[customizations.filesystem]]
+mountpoint = "/var/tmp"
+size = "2 GiB"
